@@ -11,7 +11,10 @@ https://list.jd.com/) в категории женской одежды
 
 Схема перевода
 --------------
-Chinese -> English -> Russian
+```
+Chinese -> English
+Chinese -> Russian
+```
 
 Установить зависимости:
 -----------------------
