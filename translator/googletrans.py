@@ -2,7 +2,7 @@
 import googletrans
 
 from .decorators import with_timer
-from .translator import Translator
+from .base import Translator
 
 class GoogleTranslator(Translator):
 

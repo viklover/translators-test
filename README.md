@@ -5,6 +5,7 @@ Translators test
 
 * [py-googletrans](https://github.com/ssut/py-googletrans)
 * [libretranslate](https://github.com/LibreTranslate/LibreTranslate)
+* [translators](https://github.com/UlionTse/translators)
 
 В качестве данных, берутся товары из каталога [китайского онлайн-магазина](
 https://list.jd.com/) в категории женской одежды

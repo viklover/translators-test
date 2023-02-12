@@ -1,10 +1,10 @@
 import sys
 
-import sources
-import translators
+import source as sources
+import translator as translators
 
-# LANGUAGES TARGET
-languages = ['en', 'ru']
+# LANGUAGES TARGET (AFTER ENGLISH)
+languages = ['ru']
 
 def main(args):
     
@@ -19,12 +19,15 @@ def main(args):
 
                 print('-'*20)
                 print(f'  {translator.get_name()}')
-                print('  ' + '¯'*20)
+                print('  ' + '¯'*25)
+
+                translation_en, seconds = translator.translate(sentence, dest='en')
+                print(f'  EN - {round(seconds, 2)}s:\n  {translation_en}\n')
 
                 for lang in languages:
-                    translation, seconds = translator.translate(sentence, dest=lang)
+                    translation, seconds = translator.translate(translation_en, source='en', dest=lang)
                     print(f'  {lang.upper()} - {round(seconds, 2)}s:\n  {translation}\n')
-             
+
             print()
 
 
