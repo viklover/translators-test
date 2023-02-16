@@ -19,7 +19,7 @@ class Source(object):
 
 
 TRANSLATORS_CHOICE = [
-    'google', 'yandex', 'alibaba', 'argos', 'baidu', 'bing', 'caiyun', 
+    'google', 'yandex', 'alibaba', 'argos', 'bing', 'caiyun', 
     'deepl', 'iciba', 'iflytek', 'itranslate', 'lingvanex', 'niutrans', 
     'mglip', 'papago', 'reverso', 'sogou', 'tencent', 'translateCom', 
     'utibet', 'youdao'
