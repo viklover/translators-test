@@ -1,35 +1,44 @@
-import sys
+import argparse
 
 import source as sources
-import translator as translators
+import translator as pytranslators
 
-# LANGUAGES TARGET (AFTER ENGLISH)
-languages = ['ru']
 
-def main(args):
-    
-    for source in sources.variants:
-        data = source.get(*args)
+def main(source_name, args):
 
-        for sentence in data:
+    source = sources.variants[source_name]
+    source.set_args(args)
 
-            print(f'Sentence: {sentence}')
+    sentences = source.get()
 
-            for translator in translators.variants:
+    for sentence in sentences:
 
-                print('-'*20)
-                print(f'  {translator.get_name()}')
-                print('  ' + '¯'*25)
+        print(f'Sentence: {sentence}')
 
-                translation_en, seconds = translator.translate(sentence, dest='en')
-                print(f'  EN - {round(seconds, 2)}s:\n  {translation_en}\n')
+        for api in args.api:
 
-                for lang in languages:
-                    translation, seconds = translator.translate(translation_en, source='en', dest=lang)
-                    print(f'  {lang.upper()} - {round(seconds, 2)}s:\n  {translation}\n')
+            translator = pytranslators.get_by_api(api)
 
-            print()
+            print('-'*20)
+            print(f'  {translator.get_name()}')
+            print('  ' + '¯'*25)
+
+            for lang in args.target:
+                translation, seconds = translator.translate(sentence, dest=lang)
+                print(f'  {lang.upper()} - {round(seconds, 2)}s:\n  {translation}\n')
 
 
 if __name__ == "__main__":
-    main(sys.argv[1:])
+
+    parser = argparse.ArgumentParser()
+    subparsers = parser.add_subparsers(title='commands', description='choose a source of sentences')
+    
+    for source in sources.variants.values():
+        source.setup_parser(subparsers, main)
+
+    args = parser.parse_args()
+    
+    if not vars(args):
+        parser.print_help()
+    else:
+        args.func(args)

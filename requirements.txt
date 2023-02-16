@@ -1,6 +1,4 @@
-numpy
-libretranslate
-libretranslatepy
+argparse
 googletrans==3.1.0a0
 beautifulsoup4
 fake-useragent

@@ -1,6 +1,8 @@
 
 from .jd_catalog import JdCatalog
+from .input import Input
 
-variants = [
-    JdCatalog()
-]
+variants = {
+    'translate': Input(),
+    'catalog': JdCatalog()
+}

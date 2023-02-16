@@ -8,18 +8,17 @@ from .decorators import with_timer
 class Translators(Translator):
 
     def __init__(self) -> None:
-        super().__init__("alibaba, yandex")
+        super().__init__("Translators")
+
+        self.current_api = 'google'
 
     def get_name(self):
-        return f"Translators: {self.name}"
+        return f"{self.current_api.title()} translator"
+
+    def set_api(self, api):
+        self.current_api = api
+        return self
 
     @with_timer
     def translate(self, text, source='zh', dest='en'):
-
-        if source == 'zh' and dest == 'en':
-            return tss.alibaba(text, from_language=source, to_language=dest)
-
-        elif source == 'en' and dest == 'ru':
-            return tss.google(text, from_language=source, to_language=dest)
-
-        return ts.translate_text(text, from_language=source, to_language=dest)
+        return eval(f'tss.{self.current_api}(text, from_language=source, to_language=dest)')
