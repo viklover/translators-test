@@ -9,9 +9,7 @@ def main(source_name, args):
     source = sources.variants[source_name]
     source.set_args(args)
 
-    sentences = source.get()
-
-    for sentence in sentences:
+    for sentence in source.get():
 
         print(f'Sentence: {sentence}')
 
